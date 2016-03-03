@@ -6,14 +6,16 @@
 #' is added automatically, and only the file name should be supplied.
 #' @param dir Directory to write the file. Defaults to the current working 
 #' directory.
+#' @param na.string String to fill in missing values. Defaults to "999"
 #' @param ... Additional arguments passed to \code{\link[utils]{write.table}}
 #' 
 #' @return Mplus .dat file written to the current working directory, with
 #'  variable names printed to the console (for easy copy and paste into a .inp
 #'  Mplus file)
 
-write.mplus <- function(d, fileName, dir = getwd(), ...) {
+write.mplus <- function(d, fileName, dir = getwd(), na.string = "999", ...) {
 	cat(names(d))
 	write.table(d, file = paste0(dir, "/", fileName, ".dat"), 
-		row.names = FALSE, col.names = FALSE, sep = "\t", ...)
+		row.names = FALSE, col.names = FALSE, sep = "\t", 
+		na = as.character(na.string), ...)
 }
