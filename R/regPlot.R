@@ -23,9 +23,9 @@ regPlot.default <- function(x, y, lcol = "blue",
 				se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {
 
 	mod <- lm(y ~ x)
-	nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), 
-							 max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), 
-							 length.out = length(x)))
+	nd <- data.frame(x = c(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE),
+						   unique(x),
+						   max(x, na.rm = TRUE) + sd(x, na.rm = TRUE)))
 	pred <- predict(mod, 
 		newdata = nd, 
 		se.fit = TRUE)
@@ -41,11 +41,30 @@ regPlot.default <- function(x, y, lcol = "blue",
 	}
 }
 
-regPlot.lm <- function(mod, x, y, lcol = "blue", 
+regPlot.lm <- function(mod, lcol = "blue", 
 				se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {
 	x <- mod$model[[2]]
 	y <- mod$model[[1]]
-	regPlot.default(x, y, lcol, se, secol, ...)
+
+	nd <- data.frame(x = c(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE),
+						  unique(x),
+						  max(x, na.rm = TRUE) + sd(x, na.rm = TRUE)))
+	names(nd) <- names(mod$model)[2]
+
+	pred <- predict(mod, 
+		newdata = nd, 
+		se.fit = TRUE)
+	
+	plot(x, y, ...)
+	lines(nd[[1]], pred$fit, col = lcol)
+	#abline(mod, col = lcol, lwd = 2)
+	
+	if(se == TRUE) {
+		polygon(c(nd[[1]], rev(nd[[1]])), 
+			c(pred$fit - (1.96 * pred$se.fit), 
+				rev(pred$fit + (1.96 * pred$se.fit))),
+		col = rgb(secol[1], secol[2], secol[3], secol[4]), border = NA)
+	}
 }
 
 
