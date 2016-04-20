@@ -5,12 +5,12 @@
 #' @param ... Additonal arguments passed to \code{\link[utils]{read.csv}}.
 
 
-readFiles <- function(dir = getwd(), ...) {
+readFiles <- function(dir = getwd(), pat = NULL, ...) {
 	oldDir <- getwd() # Get current working directory
 	setwd(as.character(dir)) # Change directory to where data are stored
 	
-	files <- list.files(...) # List all the files in the directory
-	dl <- lapply(1:length(files), function(i) read.csv(files[i])) # Read data
+	files <- list.files(pattern = pat) # List all the files in the directory
+	dl <- lapply(1:length(files), function(i) read.csv(files[i], ...)) # Read data
 	names(dl) <- substr(files, 1, nchar(files) - 4) # Name list elements according to files
 
 on.exit(setwd(oldDir)) # Reset the working directory
