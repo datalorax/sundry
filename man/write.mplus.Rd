@@ -5,7 +5,7 @@
 \title{Write .dat data file for Mplus. Note variable names are printed to the
 console.}
 \usage{
-write.mplus(d, fileName, dir = getwd(), ...)
+write.mplus(d, fileName, dir = getwd(), na.string = "999", ...)
 }
 \arguments{
 \item{d}{Data frame to  write out.}
@@ -15,6 +15,8 @@ is added automatically, and only the file name should be supplied.}
 
 \item{dir}{Directory to write the file. Defaults to the current working
 directory.}
+
+\item{na.string}{String to fill in missing values. Defaults to "999"}
 
 \item{...}{Additional arguments passed to \code{\link[utils]{write.table}}}
 }

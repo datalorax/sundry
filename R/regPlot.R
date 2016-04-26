@@ -57,7 +57,6 @@ regPlot.lm <- function(mod, lcol = "blue",
 	
 	plot(x, y, ...)
 	lines(nd[[1]], pred$fit, col = lcol)
-	#abline(mod, col = lcol, lwd = 2)
 	
 	if(se == TRUE) {
 		polygon(c(nd[[1]], rev(nd[[1]])), 
