@@ -1,7 +1,8 @@
 #' Batch read csv files, return all files in a list
 #' 
-#' @param dir Directory where csv files are stored. Defaults to the current 
+#' @param dir Directory where csv files are stored. Defaults to the current
 #' working directory
+#' @param pat Optional string pattern of files in the directory
 #' @param ... Additonal arguments passed to \code{\link[utils]{read.csv}}.
 
 

@@ -4,11 +4,13 @@
 \alias{readFiles}
 \title{Batch read csv files, return all files in a list}
 \usage{
-readFiles(dir = getwd(), ...)
+readFiles(dir = getwd(), pat = NULL, ...)
 }
 \arguments{
 \item{dir}{Directory where csv files are stored. Defaults to the current
 working directory}
+
+\item{pat}{Optional string pattern of files in the directory}
 
 \item{...}{Additonal arguments passed to \code{\link[utils]{read.csv}}.}
 }
