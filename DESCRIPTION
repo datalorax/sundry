@@ -2,10 +2,13 @@ Package: sundry
 Title: A sundry of convenience functions
 Version: 0.0.0.9000
 Authors@R: person("Daniel", "Anderson", email = "daniela@uoregon.edu", role = c("aut", "cre"))
-Description: This pacakge contains miscellaneous convenience functions to make data analysis and manipulation more efficient.
-Depends: R (>= 3.0.0)
+Description: This pacakge contains miscellaneous convenience functions to make
+    data analysis and manipulation more efficient.
+Depends:
+    R (>= 3.0.0)
 URL: https://github.com/DJAnderson07/sundry
 BugReports: https://github.com/DJAnderson07/sundry/issues
 License: MIT + file LICENSE
 Date: 2016-02-18
 LazyData: true
+RoxygenNote: 5.0.1
