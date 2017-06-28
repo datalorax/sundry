@@ -17,4 +17,3 @@ row names
 Function returns the variable names and their location in a data frame (the
 row names index their locations)
 }
-

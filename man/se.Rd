@@ -15,4 +15,3 @@ mean for a generic vector. For some odd reason this is not included in the
 base \emph{stats} package, so I put it in mine. Removes missing data by
 default
 }
-

@@ -34,4 +34,3 @@ Scatterplot of any two variables, as well as the regression line with the
 correlation reported. Alternatively, a regression model can be fed to the
 function with an equivalent plot reported.
 }
-

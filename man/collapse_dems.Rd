@@ -29,4 +29,3 @@ years, the value from the observed years will be retained. In other words,
 the function can be helpful for collapsing demographic data even when no
 demographic values vary.
 }
-

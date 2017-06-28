@@ -29,4 +29,3 @@ Mplus .dat file written to the current working directory, with
 Write .dat data file for Mplus. Note variable names are printed to the
 console.
 }
-

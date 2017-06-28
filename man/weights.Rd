@@ -15,4 +15,3 @@ Vector of Akaike weights
 \description{
 Calculate Akaike Weights for a set of models.
 }
-
