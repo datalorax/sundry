@@ -1,707 +1,79 @@
-pred$fit
-str(pred)
-pred$hp
-pred$m
-pred <- predict(m, newdata = nd, se.fit = TRUE, type = TRUE)
-str(pred)
-m <- lm(disp ~ hp, data = mtcars)
-nd <- data.frame(hp = min(mtcars):max(mtcars))
-pred <- predict(m, newdata = nd, se.fit = TRUE, type = TRUE)
-?se.fit
-?pred
-?predict
-pred <- predict(m, newdata = nd, se.fit = TRUE)
-str(pred)
-nrow(nd)
-pred <- predict(m, newdata = nd, se.fit = TRUE)
-temp <- plot(disp ~ hp, data = mtcars)
-abline(m, col = "blue")
-polygon(c(nd, rev(nd)), #
-    c(pred$fit - (1.96 * pred$se.fit), rev(pred$fit + 1.96 * pred$se.fit))),#
-col = rgb(0, 0, 0.5, 0.5, border = NA)
-polygon(c(nd, rev(nd)), #
-    c(pred$fit - (1.96 * pred$se.fit), rev(pred$fit + (1.96 * pred$se.fit))),#
-col = rgb(0, 0, 0.5, 0.5), border = NA)
-c(nd, rev(nd))
-polygon(c(nd$hp, rev(nd$hp)), #
-    c(pred$fit - (1.96 * pred$se.fit), rev(pred$fit + (1.96 * pred$se.fit))),#
-col = rgb(0, 0, 0.5, 0.5), border = NA)
-temp <- plot(disp ~ hp, data = mtcars)#
+slidify::slidify("/Users/Daniel/Teaching/ELI/index.Rmd")
+with(td, plot(condition_j, score, #
+    type = "p", #
+    bty = "n",#
+    main = "",#
+    xaxt = "n",#
+    xlab = "Condition",#
+    ylab = "Score",#
+    xlim = c(0.75, 2.25)))#
+axis(1, at = 0:3, labels = c("", "Control", "Treatment", ""))
+summary <- td %>% #
+    group_by(condition) %>% #
+    summarize(mean = mean(score),#
+              se = sundry::se(score))
+segments(x0 = c(1.2, 1.8), x1 = c(1.2, 1.8), #
+         y0 = c(low_y_cntrl, low_y_trt),#
+         y1 = c(high_y_cntrl, high_y_trt), #
+         lwd = 2)#
+segments(x0 = rep(c(1.2, 1.8), each = 2) - .025,#
+         x1 = rep(c(1.2, 1.8), each = 2) + .025,#
+         y0 = c(low_y_cntrl, high_y_cntrl, low_y_trt, high_y_trt),#
+         y1 = c(low_y_cntrl, high_y_cntrl, low_y_trt, high_y_trt),#
+         lwd = 2)#
+points(c(1.2, 1.8), summary$mean, cex = 1.5, pch = 22, bg = "white")
+low_y_cntrl <- summary$mean[1] - 2*summary$se[1]#
+low_y_trt <- summary$mean[2] - 2*summary$se[2]#
+high_y_cntrl <- summary$mean[1] + 2*summary$se[1]#
+high_y_trt <- summary$mean[2] + 2*summary$se[2]#
 #
-nd <- data.frame(hp = min(mtcars):max(mtcars))#
-pred <- predict(m, newdata = nd, se.fit = TRUE)#
-abline(m, col = "blue")#
-polygon(c(nd$hp, rev(nd$hp)), #
-    c(pred$fit - (1.96 * pred$se.fit), rev(pred$fit + (1.96 * pred$se.fit))),#
-col = rgb(0, 0, 0.5, 0.8), border = NA)
-temp <- plot(disp ~ hp, data = mtcars)#
+segments(x0 = c(1.2, 1.8), x1 = c(1.2, 1.8), #
+         y0 = c(low_y_cntrl, low_y_trt),#
+         y1 = c(high_y_cntrl, high_y_trt), #
+         lwd = 2)#
+segments(x0 = rep(c(1.2, 1.8), each = 2) - .025,#
+         x1 = rep(c(1.2, 1.8), each = 2) + .025,#
+         y0 = c(low_y_cntrl, high_y_cntrl, low_y_trt, high_y_trt),#
+         y1 = c(low_y_cntrl, high_y_cntrl, low_y_trt, high_y_trt),#
+         lwd = 2)#
+points(c(1.2, 1.8), summary$mean, cex = 1.5, pch = 22, bg = "white")
+summary <- td %>% #
+    group_by(condition) %>% #
+    summarize(mean = mean(score),#
+              se = sundry::se(score))
+devtools::install_github("DJAnderson07/sundry")
+summary <- td %>% #
+    group_by(condition) %>% #
+    summarize(mean = mean(score),#
+              se = sundry::se(score))
+devtools::install_github("DJAnderson07/sundry")
+sundry::se
+library(devtools)#
+library(roxygen2)#
 #
-nd <- data.frame(hp = min(mtcars):max(mtcars))#
-pred <- predict(m, newdata = nd, se.fit = TRUE)#
-abline(m, col = "blue")#
-polygon(c(nd$hp, rev(nd$hp)), #
-    c(pred$fit - (1.96 * pred$se.fit), rev(pred$fit + (1.96 * pred$se.fit))),#
-col = rgb(0, 0, 0.5, 0.2), border = NA)
-temp <- plot(disp ~ hp, data = mtcars)#
+setwd("/Users/Daniel/BRT/Code/Packages/")#
+#create("esvis")#
 #
-nd <- data.frame(hp = min(mtcars):max(mtcars))#
-pred <- predict(m, newdata = nd, se.fit = TRUE)#
-abline(m, col = "blue", lwd = 2)#
-polygon(c(nd$hp, rev(nd$hp)), #
-    c(pred$fit - (1.96 * pred$se.fit), rev(pred$fit + (1.96 * pred$se.fit))),#
-col = rgb(0, 0, 0.5, 0.2), border = NA)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2)) {#
+setwd("./sundry")#
+document()
+devtools::install_github("DJAnderson07/sundry")
+summary <- td %>% #
+    group_by(condition) %>% #
+    summarize(mean = mean(score),#
+              se = sundry::se(score))
+low_y_cntrl <- summary$mean[1] - 2*summary$se[1]#
+low_y_trt <- summary$mean[2] - 2*summary$se[2]#
+high_y_cntrl <- summary$mean[1] + 2*summary$se[1]#
+high_y_trt <- summary$mean[2] + 2*summary$se[2]#
 #
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(hp = min(x):max(x)), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-head(mtcars)
-regPlot(hp, drat)
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2)) {#
-#
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(hp = min(x):max(x)), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(hp = min(x):max(x)), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(hp = seq(min(x):max(x), length.out = length(x))), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(hp = seq(min(x), max(x), length.out = length(x))), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(x = seq(min(x), max(x), length.out = length(x))), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-rm(list = ls())
-data(mtcars)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    pred <- predict(mod, #
-        newdata = data.frame(x = seq(min(x), max(x), length.out = length(x))), #
-        se.fit = TRUE)#
-    plot(y ~ x, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x), max(x), length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(x, rev(x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x), max(x), length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, seRGB = rgb(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), #
-                             max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), #
-                             length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = seRGB, border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat)
-regPlot(mtcars$hp, mtcars$drat, se = FALSE)
-regPlot(mtcars$hp, mtcars$drat, lcol = "green")
-regPlot(mtcars$hp, mtcars$drat, lcol = "green", seRGB = c(0, 0, 0.2, 0. 1))
-mapply(rgb, c(0, 0, 0.5, 0.2))
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), #
-                             max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), #
-                             length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = rgb(secol[1], secol[2], secol[3], secol[4]), border = NA)#
-    }#
-}
-regPlot(mtcars$hp, mtcars$drat, lcol = "green", seRGB = c(0, 0, 0.2, 0. 1))
-regPlot(mtcars$hp, mtcars$drat, lcol = "green", secol = c(0, 0, 0.2, 0. 1))
-regPlot(mtcars$hp, mtcars$drat, lcol = "green")
-regPlot(mtcars$hp, mtcars$drat, lcol = "green", secol = c(0, 0.5, 0, 0.1))
-regPlot(mtcars$hp, mtcars$drat, #
-    lcol = "green", #
-    secol = c(0, 0.5, 0, 0.1),#
-    main = "fucker")
-head(mtcars)
-regPlot(gear, mpg)
-regPlot(mtcars$gear, mtcars$mpg)
-regPlot(mtcars$gear, mtcars$cyl)
-m <- lm(mpg ~ disp, data = mtcars)
-str(m)
-regPlot.lm <- function(mod) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot(x, y)#
-}
-regPlot(m)
-regPlot.default <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), #
-                             max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), #
-                             length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = rgb(secol[1], secol[2], secol[3], secol[4]), border = NA)#
-    }#
-}
-regPlot.lm <- function(mod) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot.default(x, y)#
-}
-regPlot.lm <- function(mod) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot.default(x, y, ...)#
-}
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) UseMethod("regPlot")
-regPlot.default <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), #
-                             max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), #
-                             length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = rgb(secol[1], secol[2], secol[3], secol[4]), border = NA)#
-    }#
-}
-head(mtcars)
-rm(list = ls())
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) UseMethod("regPlot")
-regPlot.default <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), #
-                             max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), #
-                             length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = rgb(secol[1], secol[2], secol[3], secol[4]), border = NA)#
-    }#
-}
-data(mtcars)
-regPlot(mtcars$mpg, mtcars$disp)
-regPlot.lm <- function(mod) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot.default(x, y, ...)#
-}
-m1 <- lm(mtcars$mpg, mtcars$disp)
-m1 <- lm(mtcars$mpg ~ mtcars$disp)
-regPlot(m1)
-regPlot.lm <- function(mod, ...) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot.default(x, y, ...)#
-}
-regPlot(m1)
-rm(list = ls())
-regPlot <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) UseMethod("regPlot")
-regPlot.default <- function(x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-#
-    mod <- lm(y ~ x)#
-    nd <- data.frame(x = seq(min(x, na.rm = TRUE) - sd(x, na.rm = TRUE), #
-                             max(x, na.rm = TRUE) + sd(x, na.rm = TRUE), #
-                             length.out = length(x)))#
-    pred <- predict(mod, #
-        newdata = nd, #
-        se.fit = TRUE)#
-    plot(x, y, ...)#
-    abline(mod, col = lcol, lwd = 2)#
-    if(se == TRUE) {#
-        polygon(c(nd$x, rev(nd$x)), #
-            c(pred$fit - (1.96 * pred$se.fit), #
-                rev(pred$fit + (1.96 * pred$se.fit))),#
-        col = rgb(secol[1], secol[2], secol[3], secol[4]), border = NA)#
-    }#
-}
-regPlot.lm <- function(mod, x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot.default(x, y, lcol = "blue", #
-                se = TRUE, secol = c(0, 0, 0.5, 0.2), ...)#
-}
-m1 <- lm(mtcars$mpg ~ mtcars$disp)
-regPlot(m1)
-m1 <- lm(mtcars$mpg ~ mtcars$disp, lcol = "green")
-regPlot(m1, lcol = "green")
-m1 <- lm(mtcars$mpg ~ mtcars$disp)
-regPlot(m1, lcol = "green")
-regPlot.lm <- function(mod, x, y, lcol = "blue",
-se = TRUE, secol = c(0, 0, 0.5, 0.2), ...) {#
-    x <- mod$model[[2]]#
-    y <- mod$model[[1]]#
-    regPlot.default(x, y, lcol, se, secol, ...)#
-}
-m1 <- lm(mtcars$mpg ~ mtcars$disp)
-regPlot(m1, lcol = "green")
-regPlot(m1, lcol = "green", secol = c(0, 0.5, 0, 0.4))
-?lm
-?list.files
-dir = getwd()
-fileName <- "fucker"
-paste0(dir, "/", fileName, ".dat")
-write.mplus <- function(d, fileName, dir = getwd(), ...) {#
-    cat(names(d))#
-    write.table(d, file = paste0(dir, "/", fileName, ".dat"), #
-        row.names = FALSE, col.names = FALSE, sep = "\t", ...)#
-}
-write.mplus(mtcars, "Fucker")
-library(sundry)
-dataset(mtcars)
-data(mtcars)
-head(mtcars)
-regPlot(mtcars$mpg, mtcars$disp)
-regPlot(mtcars$mpg, mtcars$cyl)
-regPlot(mtcars$mpg, mtcars$wt)
-regPlot(mtcars$cyl, mtcars$wt)
-regPlot(mtcars$cyl, mtcars$wt, se = FALSE)
-regPlot(mtcars$cyl, mtcars$wt, lcol = "green", secol = c(0, 0.7, 0, 0.4))
-regPlot(mtcars$cyl, mtcars$wt, lcol = "green", secol = c(0, 0.7, 0, 0.2))
-regPlot(mtcars$cyl, mtcars$wt, lcol = "green", secol = c(0.7, 0.7, 0, 0.2))
-regPlot(mtcars$cyl, mtcars$wt, lcol = "green", secol = c(0.7, 0, 0, 0.2))
-regPlot(mtcars$cyl, mtcars$wt, lcol = "green", secol = c(0.7, 0, 0, 0.2),#
-    main = "Hello", xlab = "Bitch")
-nms(mtcars)
-help(package = "sundry")
-write.mplus(mtcars, "temp")
-m1 <- lm(hp ~ mpg, data = mtcars)
-regPlot(m1)
-data(iris)
-by(iris, iris$Species, summary)
-library(slidify)
-slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/Week5p2.Rmd")
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/Week5p2.Rmd")
-install.packages("knitr", dependencies = TRUE)
-library(knitr)
-data(iris)
-head(iris)
-tapply(iris, iris$Species, summary)
-by(iris, iris$Species, summary)
-library(slidify)
-by(iris, iris$Species, summary)
-slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/Week5p2.Rmd")
-by(iris, iris$Species, summary)
-slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-data(iris)
-tapply(iris, iris$Species, summary)#
-by(iris, iris$Species, summary)
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.html")
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-tapply(iris, iris$Species, summary)#
-by(iris, iris$Species, summary)
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/Week5p2.Rmd")
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-tapply(iris, iris$Species, summary)#
-by(iris, iris$Species, summary)
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-tapply(iris, iris$Species, summary)#
-by(iris, iris$Species, summary)
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-tapply(iris, iris$Species, summary)#
-by(iris, iris$Species, summary)
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/temp.Rmd")
-slidify::slidify("/Users/Daniel/Dropbox/Teaching/CourseR/Weeks/Week5p2/Week5p2.Rmd")
-tapply(iris, iris$Species, summary)#
-by(iris, iris$Species, summary)
-library(rmarkdown)
-render("/Users/Daniel/Dropbox/Teaching/CourseR/homeworks/hw5/hw5.Rmd")
-library(openintro)
-data(countyComplete)
-d <- countyComplete
-varLocs <- c(10:17, 21, 22, 25:29)
-stateMeanDiff <- matrix(#    NROWS                      NCOLS#
-                    rep(NA, length(unique(d$state)) * length(varLocs)),#
-                ncol = length(varLocs)#
-                )#
-#
-s <- split(d[ ,varLocs], d$state)#
-#
-for(i in seq_along(s)) {#
-    for(j in 1:ncol(s[[1]])) {#
-        stateMeanDiff[i, j] <- means[j] - mean(s[[i]][ ,j], na.rm = TRUE)#
-    }#
-}#
-#
-# Make it prettier#
-dimnames(stateMeanDiff) <- list(names(s), names(s[[1]]))#
-round(colMeans(stateMeanDiff))#
-#
-# Show first six rows and columns#
-stateMeanDiff[1:6, 1:6] #
-#
-## apply family method#
-stateMeanDiff2 <- sapply(seq_along(varLocs), function(i) {#
-    means[i] - tapply(d[ ,varLocs[i]], d[ ,1], mean, na.rm = TRUE)#
-})#
-#
-#Give column names#
-colnames(stateMeanDiff2) <- names(d[ ,varLocs])#
-stateMeanDiff2[1:6, 1:6]#
-table(stateMeanDiff == stateMeanDiff2)
-means <- rep(NA, length(varLocs))
-for(i in seq_along(means)) {#
-    means[i] <- mean(d[ ,varLocs[i]], na.rm = TRUE)#
-}
-stateMeanDiff <- matrix(#    NROWS                      NCOLS#
-                    rep(NA, length(unique(d$state)) * length(varLocs)),#
-                ncol = length(varLocs)#
-                )#
-#
-s <- split(d[ ,varLocs], d$state)#
-#
-for(i in seq_along(s)) {#
-    for(j in 1:ncol(s[[1]])) {#
-        stateMeanDiff[i, j] <- means[j] - mean(s[[i]][ ,j], na.rm = TRUE)#
-    }#
-}#
-#
-# Make it prettier#
-dimnames(stateMeanDiff) <- list(names(s), names(s[[1]]))#
-round(colMeans(stateMeanDiff))#
-#
-# Show first six rows and columns#
-stateMeanDiff[1:6, 1:6] #
-#
-## apply family method#
-stateMeanDiff2 <- sapply(seq_along(varLocs), function(i) {#
-    means[i] - tapply(d[ ,varLocs[i]], d[ ,1], mean, na.rm = TRUE)#
-})#
-#
-#Give column names#
-colnames(stateMeanDiff2) <- names(d[ ,varLocs])#
-stateMeanDiff2[1:6, 1:6]#
-table(stateMeanDiff == stateMeanDiff2)
-render("/Users/Daniel/Dropbox/Teaching/CourseR/homeworks/hw5/hw5.Rmd")
-render("/Users/Daniel/Dropbox/Teaching/CourseR/hw_Solutions/pdf/Solutions_hw5.Rmd")
-library(slidify)
-slidify("/Users/Daniel/Dropbox/Teaching/CourseR/hw_Solutions/slides/Solutions_hw5_Pres.Rmd")
-slidify("/Users/Daniel/Dropbox/Teaching/CourseR/hw_Solutions/slides/Solutions_hw5_Pres.Rmd")\
-slidify("/Users/Daniel/Dropbox/Teaching/CourseR/hw_Solutions/slides/Solutions_hw5_Pres.Rmd")
-library(openintro)
-data(gifted)
-d <- gifted
-head(d)
-standardize <- function(x) (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
-standardVars <- apply(d[ ,-1], 2, standardize)
-head(standardVars)
-paste0(names(standardVars), "_s")
-standardVars <- as.data.frame(apply(d[ ,-1], 2, standardize))
-standardVars
-paste0(names(standardVars), "_s")
-names(standardVars) <- paste0(names(standardVars), "_s")
-str(apply(d[ ,-1], 2, standardize))
-d <- cbind(d, standardVars)
-head(d)
-citation(package = "lme4")
-citations(package = "sundry")
-citation(package = "sundry")
-?merge
-?quantile
-?par
-citation()
-citation("lme4")
-?pairs
-?scale
-?lme4::lmer
-setwd("/Users/Daniel/BRT/Manuscripts/KinderEarlyRdgRisk/")
-d <- read.csv("k3FluGrw_Finalv3.csv", #
-    stringsAsFactors = FALSE, na.strings = "")
-head(d)
-g <- function(x, d) grep(x, names(d))
-measure <- function(type, ord) {#
-    data <- d[ ,c(1:5, g("Date", d), g(type, d))]#
-#
-    occ <- list()#
-    occ[[1]] <- data[ ,c(1:5, g("T1", data))][ ,c(1:6, ord + 6), drop = FALSE]#
-    occ[[2]] <- data[ ,c(1:5, g("T2", data))][ ,c(1:6, ord + 6), drop = FALSE]#
-    occ[[3]] <- data[ ,c(1:5, g("T3", data))][ ,c(1:6, ord + 6), drop = FALSE]#
-    occ[[4]] <- data[ ,c(1:5, g("T4", data))][ ,c(1:6, ord + 6), drop = FALSE]#
-    occ[[5]] <- data[ ,c(1:5, g("T5", data))][ ,c(1:6, ord + 6), drop = FALSE]#
-#
-    occ <- lapply(occ, function(d) {#
-        char <- names(d)[ncol(d)]#
-        d[[paste0(substr(char, 1, 2), "form")]] <- rep(#
-            substr(char, gregexpr("_", char)[[1]][2] + 1, nchar(char)),#
-            nrow(d))#
-        return(d)#
-    })#
-#
-    occD <- merge(occ[[1]], occ[[2]], by = 1:5, all = TRUE)#
-    for(i in 3:5) {#
-        occD <- merge(occD, occ[[i]], #
-            by = c("UOID", "School", "Grade", "Teacher", "Sex"), #
-            all = TRUE)#
-    }#
-    ld <- reshape(occD,#
-        idvar = 1:5,#
-        varying = list(#
-            g("Date", occD), #
-            g(type, occD), #
-            g("form", occD) #
-            ),#
-        v.names = c("date", "score", "form"),#
-        times = 0:4, #
-        timevar = "TimePoint",#
-        direction = "long"#
-        )#
-    rownames(ld) <- NULL#
-    ld$date <- as.Date(ld$date, format = "%m/%d/%Y")#
-    ld$weeks <- as.numeric(#
-        difftime(ld$date, min(ld$date, na.rm = TRUE), units = "weeks")#
-        )#
-    ld#
-}
-compare <- function(type, occassion = "both", ...) {#
-    m1 <- measure(type, 1)#
-    m2 <- measure(type, 2)#
-#
-    weeks1 <- data.frame(#
-        MeanWeeks = tapply(m1$weeks, m1$TimePoint, mean, na.rm = TRUE))#
-    av <- merge(m1, weeks1, by.x = "TimePoint", by.y = 0, all = TRUE)#
-#
-    means1 <- tapply(m1$score, av$MeanWeeks, mean, na.rm = TRUE)#
-    means2 <- tapply(m2$score, av$MeanWeeks, mean, na.rm = TRUE)#
-#
-    plot(m1$weeks, m1$score, #
-        type = "n",#
-        ylim = c(min(means1[1]) - 0.5*sd(m1$score, na.rm = TRUE), #
-                 max(means1[length(means1)]) + 0.5*sd(m1$score, na.rm = TRUE)),#
-        xlab = "Weeks", #
-        ylab = "Score",#
-        ...)#
-    if(occassion == "both") {#
-        lines(as.numeric(names(means1)), means1)#
-        lines(as.numeric(names(means2)), means2, col = "blue")#
-        legend("bottomright", c("Occasion 1", "Occasion 2"), #
-            lwd = c(1, 1), #
-            col = c("black", "blue"))#
-        }#
-    if(occassion == 1) {#
-        lines(as.numeric(names(means1)), means1, lwd = 2)#
-        legend("bottomright", c("Occasion 1"), #
-            lwd = 2, #
-            col = "black")#
-    }#
-    if(occassion == 2) {#
-        lines(as.numeric(names(means2)), means2, lwd = 2)#
-        legend("bottomright", c("Occasion 1", "Occasion 2"), #
-            lwd = 2, #
-            col = "black")#
-        }   #
-return(list(m1, m2))#
-}
-ln <- compare("LN", main = "Letter Names")
-mplus <- function(measure, occassion, fileName) {#
-    ld <- measure[[occassion]]#
-    wide <- reshape(ld,#
-        idvar = "UOID",#
-        v.names = c("date", "score", "form", "weeks"),#
-        timevar = "TimePoint",#
-        direction = "wide")#
-    wide <- wide[ ,c(1:5, (order(names(wide)[6:ncol(wide)]) + 5))]#
-    write.table(wide, #
-        file = paste0(fileName, ".dat"),#
-        row.names = FALSE,#
-        col.names = FALSE,#
-        na = "999", #
-        sep = "\t")#
-    cat(names(wide))#
-    wide#
-}
-ln1_w <- mplus(ln, 1, "LN1")
-ln1_w
-head(ln1_w)
-setwd("/Users/Daniel/BRT/Manuscripts/KinderEarlyRdgRisk/")#
-d <- read.csv("k3FluGrw_Finalv3.csv", #
-    stringsAsFactors = FALSE, na.strings = "")
-head(d)
-order(names(d))
--1:-5
-orderd <- d[ ,c(1:5, order(names(d[ ,-1:-5])))]
-head(ordered)
-head(orderd)
-head(d)
-tsk <- function(task) grep(task, names(d))
-mapply(tsk, past0("T", 1:5))
-mapply(tsk, paste0("T", 1:5))
-d <- d[ ,c(1:5, mapply(tsk, paste0("T", 1:5)))]
-head(d)
-tsk("Date")
--mapply(tsk, c("Rot", "Date"))
-d <- d[ , -mapply(tsk, c("Rot", "Date"))]
-head(d)
-library(sundry)
-write.mplus(d)
-write.mplus(d, "LPA")
-setwd("~/BRT/Code/Packages/sundry")
+segments(x0 = c(1.2, 1.8), x1 = c(1.2, 1.8), #
+         y0 = c(low_y_cntrl, low_y_trt),#
+         y1 = c(high_y_cntrl, high_y_trt), #
+         lwd = 2)#
+segments(x0 = rep(c(1.2, 1.8), each = 2) - .025,#
+         x1 = rep(c(1.2, 1.8), each = 2) + .025,#
+         y0 = c(low_y_cntrl, high_y_cntrl, low_y_trt, high_y_trt),#
+         y1 = c(low_y_cntrl, high_y_cntrl, low_y_trt, high_y_trt),#
+         lwd = 2)#
+points(c(1.2, 1.8), summary$mean, cex = 1.5, pch = 22, bg = "white")
+slidify::slidify("/Users/Daniel/Teaching/ELI/index.Rmd")
