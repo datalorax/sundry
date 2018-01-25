@@ -14,7 +14,6 @@
 
 rm_empty_rows <- function(d, ...) {
   rem <- quos(...)
-  ncols <- ncol(select(d, !!!rem))
 
   if(length(rem) == 0) {
     d %>%
@@ -25,7 +24,7 @@ rm_empty_rows <- function(d, ...) {
   else {
     d %>%
       mutate(missing = pmap_dbl(select(., !!!rem), ~sum(is.na(c(...))))) %>%
-      filter(missing != ncols) %>%
+      filter(missing != ncol(select(d, !!!rem))) %>%
       select(-missing)
   }
 }
