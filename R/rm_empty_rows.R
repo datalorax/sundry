@@ -14,17 +14,18 @@
 
 rm_empty_rows <- function(d, ...) {
   rem <- quos(...)
+  ncols <- ncol(select(d, !!!rem))
 
   if(length(rem) == 0) {
     d %>%
       mutate(missing = pmap_dbl(., ~sum(is.na(c(...))))) %>%
-      filter(missing != length(rem)) %>%
+      filter(missing != ncols) %>%
       select(-missing)
   }
   else {
     d %>%
       mutate(missing = pmap_dbl(select(., !!!rem), ~sum(is.na(c(...))))) %>%
-      filter(missing != length(rem)) %>%
+      filter(missing != ncols) %>%
       select(-missing)
   }
 }
