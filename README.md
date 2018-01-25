@@ -3,11 +3,17 @@
 
 # sundry
 
+[![Travis-CI Build
+Status](https://travis-ci.org/DJAnderson07/sundry.svg?branch=master)](https://travis-ci.org/DJAnderson07/sundry)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/DJAnderson07/sundry?branch=master&svg=true)](https://ci.appveyor.com/project/DJAnderson07/sundry)
+
 The *sundry* package is a personal R package filled with functions that
 make my life a little easier when working on day-to-day analyses. Most
 of the functions in the package are designed to be friendly with the
 [tidyverse](https://www.tidyverse.org) and thus are pipe friendly
-(`%>%`), and work with other functions like `dplyr::group_by`.
+(`%>%`), and work with other functions like `dplyr::group_by`. The
+package is somewhat perpetually under development.
 
 ## Installation
 
