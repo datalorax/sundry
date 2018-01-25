@@ -10,7 +10,7 @@ nms(d)
 \item{d}{Data frame from which to report variable names and their locations}
 }
 \value{
-data frame of the names from the dataset and their location as the 
+data frame of the names from the dataset and their location as the
 row names
 }
 \description{

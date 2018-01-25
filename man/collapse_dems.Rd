@@ -9,8 +9,10 @@ collapse_dems(d, pat, seed = 100, print = TRUE)
 \arguments{
 \item{d}{Data frame which includes the variables to be collapsed}
 
-\item{pat}{Common string pattern represented in all variables to be 
+\item{pat}{Common string pattern represented in all variables to be
 collapsed.}
+
+\item{seed}{Seed to set for reproducibility. Defaults to 100.}
 
 \item{print}{Logical. Should the number of students who were assigned
 based on a majority rule and the number of students who were randomly
@@ -22,7 +24,7 @@ above. The number of
 }
 \description{
 This function will collapse demographic variables across years into a single
-vector. If demographics vary across years, it will return the most common 
+vector. If demographics vary across years, it will return the most common
 value (i.e., majority rule). If there is a tie, it will randomly select from
 the tied demographic values. If there are missing data across any of the
 years, the value from the observed years will be retained. In other words,

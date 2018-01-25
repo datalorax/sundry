@@ -2,7 +2,7 @@
 % Please edit documentation in R/bind_drop.R
 \name{tidy_bind_drop}
 \alias{tidy_bind_drop}
-\title{Bind the rows of a list of data frames while dropping all columns not in 
+\title{Bind the rows of a list of data frames while dropping all columns not in
 common}
 \usage{
 tidy_bind_drop(l, ...)
@@ -10,16 +10,16 @@ tidy_bind_drop(l, ...)
 \arguments{
 \item{l}{A list of dataframes}
 
-\item{...}{Variables that must be coerced prior to applying 
+\item{...}{Variables that must be coerced prior to applying
 `dplyr::bind_rows`.}
 }
 \value{
-A single dataframe that has all the rows from the original list of 
+A single dataframe that has all the rows from the original list of
 data frames, but only the columns that are represented in all data frames.
 Note that no identifier is provided from where the rows came from at present
 }
 \description{
-This function is exactly equivalent to \link{bind_rows_drop} but uses 
-functions from the purrr package. It is much faster than the base version, 
+This function is exactly equivalent to \link{bind_rows_drop} but uses
+functions from the purrr package. It is much faster than the base version,
 but includes the purrr, rlang, and dplyr dependencies.
 }

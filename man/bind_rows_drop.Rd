@@ -2,7 +2,7 @@
 % Please edit documentation in R/bind_drop.R
 \name{bind_rows_drop}
 \alias{bind_rows_drop}
-\title{Bind the rows of a list of data frames while dropping all columns not in 
+\title{Bind the rows of a list of data frames while dropping all columns not in
 common}
 \usage{
 bind_rows_drop(l)
@@ -11,11 +11,11 @@ bind_rows_drop(l)
 \item{l}{A list of dataframes}
 }
 \value{
-A single dataframe that has all the rows from the original list of 
+A single dataframe that has all the rows from the original list of
 data frames, but only the columns that are represented in all data frames.
 Note that no identifier is provided from where the rows came from at present
 }
 \description{
-Bind the rows of a list of data frames while dropping all columns not in 
+Bind the rows of a list of data frames while dropping all columns not in
 common
 }
