@@ -14,5 +14,7 @@ cache: packages
 r_packages:
   - covr
 
+r_github_packages: r-lib/fs
+
 after_success:
   - Rscript -e 'library(covr); codecov()'
