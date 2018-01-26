@@ -4,11 +4,13 @@
 #' data analysis and manipulation more efficient.
 #' @docType package
 #' @name sundry
-#' @importFrom purrr reduce map pmap_dbl
+#' @importFrom purrr safely reduce map pmap_dbl map_df
 #' @importFrom tidyr gather separate spread
 #' @importFrom rlang !!! enquo quos .data
 #' @importFrom dplyr filter select mutate mutate_at vars bind_rows funs n summarise_at
 #' is_grouped_df everything
+#' @importFrom fs dir_ls
+#' @importFrom rio import
 #' @importFrom stats sd median na.omit var
 #' @importFrom utils read.csv write.table
 #' @importFrom magrittr "%>%"

@@ -17,4 +17,6 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    tidyr
+    tidyr,
+    fs,
+    rio

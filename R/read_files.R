@@ -23,8 +23,7 @@ read_files <- function(dir = ".", pat = "*.csv|*.sav|*.xls|*.xlsx|*.txt", df = T
   }
 	else {
 	  d <- full_data$result
-	  d$file <- gsub("^\\.(\\/.+\\/)", "", d$file)
-    d$file <- gsub("(\\.).+$", "", d$file)
+	  d$file <- gsub("^\\.(\\/.+\\/)(.+)(\\.).+$", "\\2", d$file)
     d
 	}
 }

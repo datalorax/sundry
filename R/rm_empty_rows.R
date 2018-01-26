@@ -18,7 +18,7 @@ rm_empty_rows <- function(d, ...) {
   if(length(rem) == 0) {
     d %>%
       mutate(missing = pmap_dbl(., ~sum(is.na(c(...))))) %>%
-      filter(missing != ncols) %>%
+      filter(missing != ncol(.)) %>%
       select(-missing)
   }
   else {
