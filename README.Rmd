@@ -36,6 +36,42 @@ devtools::install_github("DJAnderson07/sundry")
 
 Below are a few examples of functions in the package.
 
+### Batch import data and bind into a single data frame
+
+Maybe my favorite function in the package is the `read_files` function, which 
+will read in *n* datasets and, if possible bind them together into a single 
+tibble (data frame). The function uses `rio::import`, which makes it really
+nice because you don't have to worry about file types basically at all, and
+you can even read in data of different types all at once.
+
+```{r read_files}
+library(sundry)
+library(tidyverse)
+by_species <- iris %>%
+  split(.$Species) %>%
+  map(select, -Species)
+
+str(by_species)
+
+# export as three different file types
+rio::export(by_species$setosa, "setosa.csv")
+rio::export(by_species$versicolor, "versicolor.xlsx")
+rio::export(by_species$virginica, "virginica.sav")
+
+# import them all back in as a single data frame
+d <- read_files()
+d
+d %>% 
+  count(file)
+
+fs::file_delete(c("setosa.csv", "versicolor.xlsx", "virginica.sav"))
+```
+
+The first argument is the directory, and defaults to the current working 
+directory. There's also an optional `pat` argument you can supply to read in 
+only files with a specified pattern.  You can also optionally have the files 
+read in as a list, rather than binding the data frames together.
+
 ### Quickly calculate descriptive stats
 
 Quickly calculate descriptive stats for any set of variables.

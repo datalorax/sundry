@@ -29,6 +29,88 @@ devtools::install_github("DJAnderson07/sundry")
 
 Below are a few examples of functions in the package.
 
+### Batch import data and bind into a single data frame
+
+Maybe my favorite function in the package is the `read_files` function,
+which will read in *n* datasets and, if possible bind them together into
+a single tibble (data frame). The function uses `rio::import`, which
+makes it really nice because you don’t have to worry about file types
+basically at all, and you can even read in data of different types all
+at once.
+
+``` r
+library(sundry)
+library(tidyverse)
+#> ── Attaching packages ──────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
+#> ✔ tibble  1.4.2          ✔ dplyr   0.7.4     
+#> ✔ tidyr   0.8.0          ✔ stringr 1.2.0     
+#> ✔ readr   1.1.1          ✔ forcats 0.2.0
+#> ── Conflicts ─────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
+by_species <- iris %>%
+  split(.$Species) %>%
+  map(select, -Species)
+
+str(by_species)
+#> List of 3
+#>  $ setosa    :'data.frame':  50 obs. of  4 variables:
+#>   ..$ Sepal.Length: num [1:50] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+#>   ..$ Sepal.Width : num [1:50] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+#>   ..$ Petal.Length: num [1:50] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+#>   ..$ Petal.Width : num [1:50] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+#>  $ versicolor:'data.frame':  50 obs. of  4 variables:
+#>   ..$ Sepal.Length: num [1:50] 7 6.4 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 ...
+#>   ..$ Sepal.Width : num [1:50] 3.2 3.2 3.1 2.3 2.8 2.8 3.3 2.4 2.9 2.7 ...
+#>   ..$ Petal.Length: num [1:50] 4.7 4.5 4.9 4 4.6 4.5 4.7 3.3 4.6 3.9 ...
+#>   ..$ Petal.Width : num [1:50] 1.4 1.5 1.5 1.3 1.5 1.3 1.6 1 1.3 1.4 ...
+#>  $ virginica :'data.frame':  50 obs. of  4 variables:
+#>   ..$ Sepal.Length: num [1:50] 6.3 5.8 7.1 6.3 6.5 7.6 4.9 7.3 6.7 7.2 ...
+#>   ..$ Sepal.Width : num [1:50] 3.3 2.7 3 2.9 3 3 2.5 2.9 2.5 3.6 ...
+#>   ..$ Petal.Length: num [1:50] 6 5.1 5.9 5.6 5.8 6.6 4.5 6.3 5.8 6.1 ...
+#>   ..$ Petal.Width : num [1:50] 2.5 1.9 2.1 1.8 2.2 2.1 1.7 1.8 1.8 2.5 ...
+
+# export as three different file types
+rio::export(by_species$setosa, "setosa.csv")
+rio::export(by_species$versicolor, "versicolor.xlsx")
+rio::export(by_species$virginica, "virginica.sav")
+
+# import them all back in as a single data frame
+d <- read_files()
+d
+#> # A tibble: 150 x 5
+#>    file   Sepal.Length Sepal.Width Petal.Length Petal.Width
+#>    <chr>         <dbl>       <dbl>        <dbl>       <dbl>
+#>  1 setosa         5.10        3.50         1.40       0.200
+#>  2 setosa         4.90        3.00         1.40       0.200
+#>  3 setosa         4.70        3.20         1.30       0.200
+#>  4 setosa         4.60        3.10         1.50       0.200
+#>  5 setosa         5.00        3.60         1.40       0.200
+#>  6 setosa         5.40        3.90         1.70       0.400
+#>  7 setosa         4.60        3.40         1.40       0.300
+#>  8 setosa         5.00        3.40         1.50       0.200
+#>  9 setosa         4.40        2.90         1.40       0.200
+#> 10 setosa         4.90        3.10         1.50       0.100
+#> # ... with 140 more rows
+d %>% 
+  count(file)
+#> # A tibble: 3 x 2
+#>   file           n
+#>   <chr>      <int>
+#> 1 setosa        50
+#> 2 versicolor    50
+#> 3 virginica     50
+
+fs::file_delete(c("setosa.csv", "versicolor.xlsx", "virginica.sav"))
+```
+
+The first argument is the directory, and defaults to the current working
+directory. There’s also an optional `pat` argument you can supply to
+read in only files with a specified pattern. You can also optionally
+have the files read in as a list, rather than binding the data frames
+together.
+
 ### Quickly calculate descriptive stats
 
 Quickly calculate descriptive stats for any set of variables.
@@ -40,7 +122,7 @@ storms %>%
   descrips(wind, pressure)
 #> # A tibble: 2 x 6
 #>   variable     n   min   max  mean    sd
-#> * <chr>    <dbl> <dbl> <dbl> <dbl> <dbl>
+#>   <chr>    <dbl> <dbl> <dbl> <dbl> <dbl>
 #> 1 pressure 10010 882    1022 992    19.5
 #> 2 wind     10010  10.0   160  53.5  26.2
 
@@ -49,7 +131,7 @@ storms %>%
   descrips(wind, pressure)
 #> # A tibble: 82 x 7
 #>     year variable     n   min    max   mean    sd
-#>  * <dbl> <chr>    <dbl> <dbl>  <dbl>  <dbl> <dbl>
+#>    <dbl> <chr>    <dbl> <dbl>  <dbl>  <dbl> <dbl>
 #>  1  1975 pressure  86.0 963   1014    995   15.2 
 #>  2  1975 wind      86.0  20.0  100     50.9 23.6 
 #>  3  1976 pressure  52.0 957   1012    989   15.3 
@@ -70,7 +152,7 @@ storms %>%
                         qtile75 = quantile(., 0.75)))
 #> # A tibble: 82 x 5
 #>     year variable qtile25 median qtile75
-#>  * <dbl> <chr>      <dbl>  <dbl>   <dbl>
+#>    <dbl> <chr>      <dbl>  <dbl>   <dbl>
 #>  1  1975 pressure   984    997    1011  
 #>  2  1975 wind        25.0   52.5    65.0
 #>  3  1976 pressure   978    992    1000  
