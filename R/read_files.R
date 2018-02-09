@@ -8,11 +8,13 @@
 #' if \code{FALSE}.
 #' @param ... Additonal arguments passed to \code{\link[rio]{import}} (e.g.,
 #' \code{delim}).
+#' @export
 
 
 read_files <- function(dir = ".", pat = "*.csv|*.sav|*.xls|*.xlsx|*.txt", df = TRUE, ...) {
-	pat <- paste0("*.", pat)
-  files <- dir_ls(dir, glob = pat)
+
+  files <- dir_ls(dir, regexp = pat)
+
   if(length(files) == 0) {
     stop("No files in the directory matching the given pattern")
   }
@@ -23,7 +25,7 @@ read_files <- function(dir = ".", pat = "*.csv|*.sav|*.xls|*.xlsx|*.txt", df = T
   }
 	else {
 	  d <- full_data$result
-	  d$file <- gsub("^\\.(\\/.+\\/)(.+)(\\.).+$", "\\2", d$file)
+	  d$file <- gsub("^\\.*(\\/.+\\/)*(.+)(\\.).+$", "\\2", d$file)
     d
 	}
 }
