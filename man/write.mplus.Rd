@@ -13,7 +13,7 @@ write.mplus(d, fileName, dir = getwd(), na.string = "999", ...)
 \item{fileName}{Name of the file to be written out. Note that the extension
 is added automatically, and only the file name should be supplied.}
 
-\item{dir}{Directory to write the file. Defaults to the current working 
+\item{dir}{Directory to write the file. Defaults to the current working
 directory.}
 
 \item{na.string}{String to fill in missing values. Defaults to "999"}
@@ -24,6 +24,7 @@ directory.}
 Mplus .dat file written to the current working directory, with
  variable names printed to the console (for easy copy and paste into a .inp
  Mplus file)
+ @export
 }
 \description{
 Write .dat data file for Mplus. Note variable names are printed to the
