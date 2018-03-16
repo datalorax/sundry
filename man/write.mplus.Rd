@@ -24,7 +24,6 @@ directory.}
 Mplus .dat file written to the current working directory, with
  variable names printed to the console (for easy copy and paste into a .inp
  Mplus file)
- @export
 }
 \description{
 Write .dat data file for Mplus. Note variable names are printed to the

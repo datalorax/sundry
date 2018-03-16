@@ -12,7 +12,7 @@
 #' @return Mplus .dat file written to the current working directory, with
 #'  variable names printed to the console (for easy copy and paste into a .inp
 #'  Mplus file)
-#'  @export
+#' @export
 
 write.mplus <- function(d, fileName, dir = getwd(), na.string = "999", ...) {
 	cat(names(d))
