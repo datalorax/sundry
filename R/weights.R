@@ -1,10 +1,13 @@
 #' Calculate Akaike Weights for a set of models.
 #'
-#' @param icV Vector of information criteria.
+#' @param ... The candidate models to compare
 #' @return Vector of Akaike weights
 #' @export
 
-akaike_weights <- function(icV) {
-	delta <- icV - min(icV)
-	round(exp(-delta/2) / sum(exp(-delta/2)), 2)
+aic_weights <- function(...) {
+  l <- list(...)
+  aics <- vapply(l, AIC, numeric(1))
+  delta <- aics - min(aics)
+
+  round(exp(-delta/2) / sum(exp(-delta/2)), 2)
 }
