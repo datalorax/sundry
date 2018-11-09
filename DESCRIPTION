@@ -4,7 +4,7 @@ Version: 0.0.1.9000
 Authors@R: person("Daniel", "Anderson", email = "daniela@uoregon.edu", role = c("aut", "cre"))
 Description: This pacakge contains miscellaneous convenience functions to make
     data analysis and manipulation more efficient. Mostly, they're oriented around the tidyverse and thus are pipe-friendly.
-Depends: R (>= 3.4.1)
+Depends: R (>= 3.4.0)
 URL: https://github.com/DJAnderson07/sundry
 BugReports: https://github.com/DJAnderson07/sundry/issues
 License: MIT + file LICENSE

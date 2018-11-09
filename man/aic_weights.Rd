@@ -7,10 +7,11 @@
 aic_weights(...)
 }
 \arguments{
-\item{...}{The candidate models to compare}
+\item{...}{The models to compare}
 }
 \value{
-Vector of Akaike weights
+A data frame containing the delta AIC values and corresponding
+  weights for each model
 }
 \description{
 Calculate Akaike Weights for a set of models.

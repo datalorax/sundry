@@ -11,7 +11,7 @@
 #' is_grouped_df everything
 #' @importFrom fs dir_ls
 #' @importFrom rio import
-#' @importFrom stats sd median na.omit var
+#' @importFrom stats sd median na.omit var AIC formula
 #' @importFrom utils read.csv write.table
 #' @importFrom magrittr "%>%"
 NULL
