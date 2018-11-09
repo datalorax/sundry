@@ -4,10 +4,10 @@
 # sundry
 
 [![Travis-CI Build
-Status](https://travis-ci.org/DJAnderson07/sundry.svg?branch=master)](https://travis-ci.org/DJAnderson07/sundry)
+Status](https://travis-ci.org/datalorax/sundry.svg?branch=master)](https://travis-ci.org/datalorax/sundry)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/DJAnderson07/sundry?branch=master&svg=true)](https://ci.appveyor.com/project/DJAnderson07/sundry)
-[![codecov](https://codecov.io/gh/DJAnderson07/sundry/branch/master/graph/badge.svg)](https://codecov.io/gh/DJAnderson07/sundry)
+Status](https://ci.appveyor.com/api/projects/status/4bmb4eqscdf3p6vb?svg=true)](https://ci.appveyor.com/project/DJAnderson07/sundry)
+[![codecov](https://codecov.io/gh/datalorax/sundry/branch/master/graph/badge.svg)](https://codecov.io/gh/datalorax/sundry)
 
 The *sundry* package is a personal R package filled with functions that
 make my life a little easier when working on day-to-day analyses. Most
@@ -22,7 +22,7 @@ You can install sundry from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("DJAnderson07/sundry")
+devtools::install_github("datalorax/sundry")
 ```
 
 ## Examples
@@ -41,12 +41,12 @@ at once.
 ``` r
 library(sundry)
 library(tidyverse)
-#> ── Attaching packages ──────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
-#> ✔ tibble  1.4.2          ✔ dplyr   0.7.4     
-#> ✔ tidyr   0.8.0          ✔ stringr 1.2.0     
-#> ✔ readr   1.1.1          ✔ forcats 0.2.0
-#> ── Conflicts ─────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+#> ── Attaching packages ─────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
+#> ✔ tibble  1.4.2          ✔ dplyr   0.7.7     
+#> ✔ tidyr   0.8.2          ✔ stringr 1.3.1     
+#> ✔ readr   1.1.1          ✔ forcats 0.3.0
+#> ── Conflicts ────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 #> ✖ dplyr::filter() masks stats::filter()
 #> ✖ dplyr::lag()    masks stats::lag()
 by_species <- iris %>%
@@ -82,16 +82,16 @@ d
 #> # A tibble: 150 x 5
 #>    file   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>    <chr>         <dbl>       <dbl>        <dbl>       <dbl>
-#>  1 setosa         5.10        3.50         1.40       0.200
-#>  2 setosa         4.90        3.00         1.40       0.200
-#>  3 setosa         4.70        3.20         1.30       0.200
-#>  4 setosa         4.60        3.10         1.50       0.200
-#>  5 setosa         5.00        3.60         1.40       0.200
-#>  6 setosa         5.40        3.90         1.70       0.400
-#>  7 setosa         4.60        3.40         1.40       0.300
-#>  8 setosa         5.00        3.40         1.50       0.200
-#>  9 setosa         4.40        2.90         1.40       0.200
-#> 10 setosa         4.90        3.10         1.50       0.100
+#>  1 setosa     5.100000         3.5          1.4         0.2
+#>  2 setosa     4.9              3            1.4         0.2
+#>  3 setosa     4.7              3.2          1.3         0.2
+#>  4 setosa     4.600000         3.1          1.5         0.2
+#>  5 setosa     5                3.6          1.4         0.2
+#>  6 setosa     5.4              3.9          1.7         0.4
+#>  7 setosa     4.600000         3.4          1.4         0.3
+#>  8 setosa     5                3.4          1.5         0.2
+#>  9 setosa     4.4              2.9          1.4         0.2
+#> 10 setosa     4.9              3.1          1.5         0.1
 #> # ... with 140 more rows
 d %>% 
   count(file)
@@ -121,27 +121,27 @@ library(sundry)
 storms %>% 
   descrips(wind, pressure)
 #> # A tibble: 2 x 6
-#>   variable     n   min   max  mean    sd
-#>   <chr>    <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1 pressure 10010 882    1022 992    19.5
-#> 2 wind     10010  10.0   160  53.5  26.2
+#>   variable     n   min   max      mean       sd
+#>   <chr>    <dbl> <dbl> <dbl>     <dbl>    <dbl>
+#> 1 pressure 10010   882  1022 992.1390  19.51678
+#> 2 wind     10010    10   160  53.49500 26.21387
 
 storms %>% 
   group_by(year) %>% 
   descrips(wind, pressure)
 #> # A tibble: 82 x 7
-#>     year variable     n   min    max   mean    sd
-#>    <dbl> <chr>    <dbl> <dbl>  <dbl>  <dbl> <dbl>
-#>  1  1975 pressure  86.0 963   1014    995   15.2 
-#>  2  1975 wind      86.0  20.0  100     50.9 23.6 
-#>  3  1976 pressure  52.0 957   1012    989   15.3 
-#>  4  1976 wind      52.0  20.0  105     59.9 24.8 
-#>  5  1977 pressure  53.0 926   1015    995   20.4 
-#>  6  1977 wind      53.0  20.0  150     54.0 29.6 
-#>  7  1978 pressure  54.0 980   1012   1006    6.64
-#>  8  1978 wind      54.0  20.0   80.0   40.5 13.9 
-#>  9  1979 pressure 301   924   1014    995   19.9 
-#> 10  1979 wind     301    15.0  150     48.7 30.3 
+#>     year variable     n   min   max       mean        sd
+#>    <dbl> <chr>    <dbl> <dbl> <dbl>      <dbl>     <dbl>
+#>  1  1975 pressure    86   963  1014  994.6279  15.20530 
+#>  2  1975 wind        86    20   100   50.87209 23.60448 
+#>  3  1976 pressure    52   957  1012  988.7692  15.25678 
+#>  4  1976 wind        52    20   105   59.90385 24.78319 
+#>  5  1977 pressure    53   926  1015  995.3585  20.42443 
+#>  6  1977 wind        53    20   150   53.96226 29.55371 
+#>  7  1978 pressure    54   980  1012 1005.833    6.635383
+#>  8  1978 wind        54    20    80   40.46296 13.88186 
+#>  9  1979 pressure   301   924  1014  994.8372  19.87369 
+#> 10  1979 wind       301    15   150   48.67110 30.31603 
 #> # ... with 72 more rows
 
 storms %>% 
@@ -153,16 +153,16 @@ storms %>%
 #> # A tibble: 82 x 5
 #>     year variable qtile25 median qtile75
 #>    <dbl> <chr>      <dbl>  <dbl>   <dbl>
-#>  1  1975 pressure   984    997    1011  
-#>  2  1975 wind        25.0   52.5    65.0
-#>  3  1976 pressure   978    992    1000  
-#>  4  1976 wind        38.8   60.0    80.0
-#>  5  1977 pressure   994   1001    1010  
-#>  6  1977 wind        30.0   45.0    70.0
-#>  7  1978 pressure  1006   1007    1009  
-#>  8  1978 wind        30.0   40.0    45.0
-#>  9  1979 pressure   988   1002    1008  
-#> 10  1979 wind        25.0   35.0    65.0
+#>  1  1975 pressure  984.5   997   1010.75
+#>  2  1975 wind       25      52.5   65   
+#>  3  1976 pressure  978.5   992   1000.25
+#>  4  1976 wind       38.75   60     80   
+#>  5  1977 pressure  994    1001   1010   
+#>  6  1977 wind       30      45     70   
+#>  7  1978 pressure 1006    1007   1009   
+#>  8  1978 wind       30      40     45   
+#>  9  1979 pressure  988    1002   1008   
+#> 10  1979 wind       25      35     65   
 #> # ... with 72 more rows
 ```
 
@@ -239,19 +239,19 @@ with the minimum and maximum values of a specific variable.
 storms %>%
  filter_by_funs(wind, funs(min, max))
 #> # A tibble: 11 x 14
-#>    fun   name    year month   day  hour   lat  long status  category  wind
-#>    <chr> <chr>  <dbl> <dbl> <int> <dbl> <dbl> <dbl> <chr>   <ord>    <int>
-#>  1 min   Bonnie  1986  6.00    28  6.00  36.5 -91.3 tropic… -1          10
-#>  2 min   Bonnie  1986  6.00    28 12.0   37.2 -90.0 tropic… -1          10
-#>  3 min   AL031…  1987  8.00    16 18.0   30.9 -83.2 tropic… -1          10
-#>  4 min   AL031…  1987  8.00    17  0     31.4 -82.9 tropic… -1          10
-#>  5 min   AL031…  1987  8.00    17  6.00  31.8 -82.3 tropic… -1          10
-#>  6 min   Alber…  1994  7.00     7  0     32.7 -86.3 tropic… -1          10
-#>  7 min   Alber…  1994  7.00     7  6.00  32.7 -86.6 tropic… -1          10
-#>  8 min   Alber…  1994  7.00     7 12.0   32.8 -86.8 tropic… -1          10
-#>  9 min   Alber…  1994  7.00     7 18.0   33.0 -87.0 tropic… -1          10
-#> 10 max   Gilbe…  1988  9.00    14  0     19.7 -83.8 hurric… 5          160
-#> 11 max   Wilma   2005 10.0     19 12.0   17.3 -82.8 hurric… 5          160
+#>    fun   name    year month   day  hour    lat  long status category  wind
+#>    <chr> <chr>  <dbl> <dbl> <int> <dbl>  <dbl> <dbl> <chr>  <ord>    <int>
+#>  1 min   Bonnie  1986     6    28     6 36.5   -91.3 tropi… -1          10
+#>  2 min   Bonnie  1986     6    28    12 37.2   -90   tropi… -1          10
+#>  3 min   AL031…  1987     8    16    18 30.9   -83.2 tropi… -1          10
+#>  4 min   AL031…  1987     8    17     0 31.4   -82.9 tropi… -1          10
+#>  5 min   AL031…  1987     8    17     6 31.8   -82.3 tropi… -1          10
+#>  6 min   Alber…  1994     7     7     0 32.7   -86.3 tropi… -1          10
+#>  7 min   Alber…  1994     7     7     6 32.7   -86.6 tropi… -1          10
+#>  8 min   Alber…  1994     7     7    12 32.800 -86.8 tropi… -1          10
+#>  9 min   Alber…  1994     7     7    18 33     -87   tropi… -1          10
+#> 10 max   Gilbe…  1988     9    14     0 19.7   -83.8 hurri… 5          160
+#> 11 max   Wilma   2005    10    19    12 17.3   -82.8 hurri… 5          160
 #> # ... with 3 more variables: pressure <int>, ts_diameter <dbl>,
 #> #   hu_diameter <dbl>
 
@@ -263,16 +263,16 @@ storms %>%
 #> # Groups:   year [41]
 #>    fun    name   year month   day  hour   lat  long status  category  wind
 #>    <chr>  <chr> <dbl> <dbl> <int> <dbl> <dbl> <dbl> <chr>   <ord>    <int>
-#>  1 min    Caro…  1975  9.00     1  6.00  25.2 -98.7 tropic… -1          20
-#>  2 min    Caro…  1975  9.00     1 12.0   25.3 -99.0 tropic… -1          20
-#>  3 max    Caro…  1975  8.00    31  0     24.0 -97.0 hurric… 3          100
-#>  4 max    Caro…  1975  8.00    31  6.00  24.1 -97.5 hurric… 3          100
-#>  5 min    Glor…  1976  9.00    26 12.0   23.0 -58.0 tropic… -1          20
-#>  6 min    Glor…  1976  9.00    26 18.0   23.7 -58.1 tropic… -1          20
-#>  7 median Belle  1976  8.00    10  6.00  41.0 -73.2 tropic… 0           60
-#>  8 median Glor…  1976  9.00    28  6.00  27.5 -58.2 tropic… 0           60
-#>  9 median Glor…  1976  9.00    28 12.0   27.8 -58.6 tropic… 0           60
-#> 10 median Glor…  1976  9.00    28 18.0   28.2 -59.0 tropic… 0           60
+#>  1 min    Caro…  1975     9     1     6  25.2 -98.7 tropic… -1          20
+#>  2 min    Caro…  1975     9     1    12  25.3 -99   tropic… -1          20
+#>  3 max    Caro…  1975     8    31     0  24   -97   hurric… 3          100
+#>  4 max    Caro…  1975     8    31     6  24.1 -97.5 hurric… 3          100
+#>  5 min    Glor…  1976     9    26    12  23   -58   tropic… -1          20
+#>  6 min    Glor…  1976     9    26    18  23.7 -58.1 tropic… -1          20
+#>  7 median Belle  1976     8    10     6  41   -73.2 tropic… 0           60
+#>  8 median Glor…  1976     9    28     6  27.5 -58.2 tropic… 0           60
+#>  9 median Glor…  1976     9    28    12  27.8 -58.6 tropic… 0           60
+#> 10 median Glor…  1976     9    28    18  28.2 -59   tropic… 0           60
 #> # ... with 1,250 more rows, and 3 more variables: pressure <int>,
 #> #   ts_diameter <dbl>, hu_diameter <dbl>
 ```

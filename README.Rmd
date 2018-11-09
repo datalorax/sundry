@@ -13,9 +13,9 @@ knitr::opts_chunk$set(
 ```
 
 # sundry
-[![Travis-CI Build Status](https://travis-ci.org/DJAnderson07/sundry.svg?branch=master)](https://travis-ci.org/DJAnderson07/sundry)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/DJAnderson07/sundry?branch=master&svg=true)](https://ci.appveyor.com/project/DJAnderson07/sundry)
-[![codecov](https://codecov.io/gh/DJAnderson07/sundry/branch/master/graph/badge.svg)](https://codecov.io/gh/DJAnderson07/sundry)
+[![Travis-CI Build Status](https://travis-ci.org/datalorax/sundry.svg?branch=master)](https://travis-ci.org/datalorax/sundry)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/4bmb4eqscdf3p6vb?svg=true)](https://ci.appveyor.com/project/DJAnderson07/sundry)
+[![codecov](https://codecov.io/gh/datalorax/sundry/branch/master/graph/badge.svg)](https://codecov.io/gh/datalorax/sundry)
 
 The *sundry* package is a personal R package filled with functions that make my
 life a little easier when working on day-to-day analyses. Most of the functions
@@ -29,7 +29,7 @@ You can install sundry from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("DJAnderson07/sundry")
+devtools::install_github("datalorax/sundry")
 ```
 
 ## Examples
