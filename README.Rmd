@@ -109,7 +109,7 @@ d %>%
   select(district_id, number_level_4:percent_level_1)
 ```
 
-The data above have missing data data across many columns, but every row has at 
+The data above have missing data across many columns, but every row has at 
 least some valid entries. Suppose I was only interested in data on schools with 
 proficiency data. 
 
