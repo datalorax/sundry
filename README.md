@@ -1,4 +1,4 @@
-
+﻿
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # sundry
@@ -276,3 +276,6 @@ storms %>%
 #> # ... with 1,250 more rows, and 3 more variables: pressure <int>,
 #> #   ts_diameter <dbl>, hu_diameter <dbl>
 ```
+
+
+Here are my comments - Joe Nese
