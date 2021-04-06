@@ -11,8 +11,10 @@
 #' is_grouped_df everything
 #' @importFrom fs dir_ls
 #' @importFrom rio import
-#' @importFrom stats sd median na.omit var AIC formula
+#' @importFrom stats sd median na.omit var AIC formula sigma
 #' @importFrom utils read.csv write.table
+#' @importFrom lme4 getME
+#' @importFrom Matrix Diagonal crossprod t
 #' @importFrom magrittr "%>%"
 NULL
 

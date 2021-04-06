@@ -4,8 +4,12 @@
 \alias{descrips}
 \title{Pipe-friendly descriptive stats}
 \usage{
-descrips(data, ..., .funs = dplyr::funs(n(), min(., na.rm = TRUE), max(.,
-  na.rm = TRUE), mean(., na.rm = TRUE), sd(., na.rm = TRUE)))
+descrips(
+  data,
+  ...,
+  .funs = dplyr::funs(n(), min(., na.rm = TRUE), max(., na.rm = TRUE), mean(., na.rm =
+    TRUE), sd(., na.rm = TRUE))
+)
 }
 \arguments{
 \item{data}{The data frame that includes the variables to compute

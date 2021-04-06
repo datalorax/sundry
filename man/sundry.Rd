@@ -3,7 +3,6 @@
 \docType{package}
 \name{sundry}
 \alias{sundry}
-\alias{sundry-package}
 \title{sundry: A sundry of convenience functions}
 \description{
 This pacakge contains miscellaneous convenience functions to make

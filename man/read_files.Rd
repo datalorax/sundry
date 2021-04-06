@@ -4,8 +4,7 @@
 \alias{read_files}
 \title{Read a batch of files}
 \usage{
-read_files(dir = ".", pat = "*.csv|*.sav|*.xls|*.xlsx|*.txt", df = TRUE,
-  ...)
+read_files(dir = ".", pat = "*.csv|*.sav|*.xls|*.xlsx|*.txt", df = TRUE, ...)
 }
 \arguments{
 \item{dir}{Directory where files are stored. Defaults to the current
